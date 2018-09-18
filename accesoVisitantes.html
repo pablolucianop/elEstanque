@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <audio id="myAudio">
+
+        <source src="alive.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+    </audio>
+
+
+    <button onclick="playAudio()" type="button">recibir la bendición</button>
+<h1>
+    <b id="my-ip"></b>
+</h1>
+<h1>
+    galería de visitantes
+    <b id="galeria"></b>
+</h1>
+
+    <script>
+         var galeriaVisitantes = []
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+               
+
+
+
+
+
+//ip
+
+
+
+                (function (loading, success) {
+                        var xhr = XMLHttpRequest !== undefined ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                        loading.apply(null, []);
+                        xhr.open('get', 'https://api.ipify.org/?format=json', true);
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4) {
+                                success.call(null, JSON.parse(xhr.responseText));
+                            }
+                        }
+                        xhr.send();
+                    }(function () {
+                        document.getElementById('my-ip').innerHTML = 'Loading...';
+                    }, function (response) {
+                        document.getElementById('my-ip').innerHTML = response.ip;
+                        galeriaVisitantes.push(response.ip);
+                        document.getElementById('galeria').innerHTML = galeriaVisitantes;
+                    }));
+                    
+                
+
+    </script>
+
+
+</body>
+
+</html>
